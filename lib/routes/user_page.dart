@@ -12,14 +12,21 @@ class UserPage extends StatefulWidget {
 
 class _UserPageState extends State<UserPage> {
   String _data = 'loading';
-  final url = 'https://jsonplaceholder.typicode.com/users';
+  final url = 'https://jsonplaceholder.tpicode.com/users';
 
   Future<void> fetchAllUsers() async {
-    final response = await http.get(Uri.parse(url));
+    try {
+      final response = await http.get(Uri.parse(url));
       setState(() {
-        _data = response.body;
+        if (response.statusCode >= 200 && response.statusCode < 300) {
+          _data = response.body;
+        } else {
+          _data = response.statusCode.toString();
+        }
       });
-
+    } catch (err) {
+      print(err);
+    }
   }
 
   @override
@@ -37,9 +44,6 @@ class _UserPageState extends State<UserPage> {
           title: Text(widget.title),
           centerTitle: true,
         ),
-        body: Column(
-            children:[
-              Expanded(child: Text(_data))]
-            ));
+        body: Column(children: [Expanded(child: Text(_data))]));
   }
 }
