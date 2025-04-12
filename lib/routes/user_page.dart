@@ -12,7 +12,7 @@ class UserPage extends StatefulWidget {
 
 class _UserPageState extends State<UserPage> {
   String _data = 'loading';
-  final url = 'https://jsonplaceholder.tpicode.com/users';
+  final url = 'https://jsonplaceholder.typicode.com/users';
 
   Future<void> fetchAllUsers() async {
     try {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:json_user_posts/routes/first_user_page.dart';
 import 'package:json_user_posts/routes/user_page.dart';
 
 void main() {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const UserPage(title: 'User Page'),
+      home: const FirstUserPage(title: 'User Page'),
       debugShowCheckedModeBanner: false,
     );
   }
