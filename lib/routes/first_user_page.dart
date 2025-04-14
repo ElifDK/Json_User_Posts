@@ -52,7 +52,7 @@ class _FirstUserPageState extends State<FirstUserPage> {
             future: futureUser,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return Text(snapshot.data!.name);
+                return Text(snapshot.data!.name ?? '');
               } else if (snapshot.hasError) {
                 return Text('${snapshot.error}');
               }
@@ -64,3 +64,5 @@ class _FirstUserPageState extends State<FirstUserPage> {
         ));
   }
 }
+
+
