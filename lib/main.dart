@@ -1,26 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:json_user_posts/routes/first_user_page.dart';
+import 'package:json_user_posts/routes/post_page.dart';
 import 'package:json_user_posts/routes/user_page.dart';
+import 'package:json_user_posts/routes/welcome_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MaterialApp(
+    title: 'Flutter Demo',
+    theme: ThemeData(
+      colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      useMaterial3: true,
+    ),
+    initialRoute: '/',
+    routes: {
+      '/': (context) => WelcomePage(),
+      '/users': (context) => UserPage(title:'User Page'),
+      '/posts':(context) => PostPage(),
+      '/firstUser': (context) => FirstUserPage(title: 'First User')
+    },
+  ));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Json Serialization Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const UserPage(title:'User Page'),
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
 

@@ -73,7 +73,14 @@ class _UserPageState extends State<UserPage> {
               return Card(
                 child: Card(
                   child: ListTile(
-                    onTap: (){},
+                    onTap: (){
+
+                        Navigator.pushNamed(context, '/posts',
+                            arguments: {
+                              'id': _users?[index].id.toString(),
+                              'name': _users?[index].name
+                            });
+                      },
                     title: Text(_users?[index].id.toString() ?? ''),
                     subtitle: Text(_users?[index].name ?? ''),
                   ),
