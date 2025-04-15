@@ -16,7 +16,7 @@ class UserPage extends StatefulWidget {
 class _UserPageState extends State<UserPage> {
   List <User>? _users;
   String _data = 'loading';
-  final url = 'https://jsonplaceholder.typicode.com/user';
+  final url = 'https://jsonplaceholder.typicode.com/users';
 
   Future<void> fetchAllUsers() async {
     try {
@@ -36,8 +36,10 @@ class _UserPageState extends State<UserPage> {
   Future<void> fetchAllUsersInList () async {
     try {
       final response = await http.get(Uri.parse(url));
+      print(response.statusCode.toString());
       if (response.statusCode >= 200 && response.statusCode < 300) {
         setState(() {
+          print('Here');
           _users = jsonDecode(response.body)
               .map<User>((e) => User.fromJson(e))
               .toList();
@@ -51,10 +53,10 @@ class _UserPageState extends State<UserPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
+    fetchAllUsersInList();
     super.initState();
     //fetchAllUsers();
-    fetchAllUsersInList();
+
   }
 
   @override
@@ -69,10 +71,12 @@ class _UserPageState extends State<UserPage> {
             itemCount : _users?.length ?? 0,
             itemBuilder: (context, index) {
               return Card(
-                child: ListTile(
-                  onTap: (){},
-                  title: Text(_users?[index].id.toString() ?? ''),
-                  subtitle: Text(_users?[index].name ?? ''),
+                child: Card(
+                  child: ListTile(
+                    onTap: (){},
+                    title: Text(_users?[index].id.toString() ?? ''),
+                    subtitle: Text(_users?[index].name ?? ''),
+                  ),
                 ),
               );
             })
